@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: mysql-db
+    restart: on-failure
+    environment:
+      MYSQL_ROOT_PASSWORD: "admin"
+    ports:
+      - 3306:3306
+    networks:
+      - study-planning-network
+
+  discovery-server:
+    container_name: discovery-server
+    build:
+      context: ./discovery-server/
+      dockerfile: DockerFile
+    restart: on-failure
+    ports:
+      - 8761:8761
+    depends_on:
+      - mysql
+    networks:
+      - study-planning-network
+
+  gateway:
+    container_name: discovery-server
+    build:
+      context: ./gateway/
+      dockerfile: DockerFile
+    restart: on-failure
+    ports:
+      - 8080:8080
+    depends_on:
+      - mysql
+    networks:
+      - study-planning-network
+
+networks:
+  study-planning-network:

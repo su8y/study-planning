@@ -4,6 +4,8 @@ server:
 spring:
   application:
     name: gateway
+  config:
+    import: optional:configserver:http://localhost:8888
   cloud:
     gateway:
       routes:
@@ -15,18 +17,3 @@ spring:
           uri: lb://study
           predicates:
             - Path=/study/**
-
-
-eureka:
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
-  instance:
-    hostname: localhost
-    non-secure-port: ${server.port}
-    prefer-ip-address: true
-
-
-

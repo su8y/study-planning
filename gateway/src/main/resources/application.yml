@@ -1,15 +1,32 @@
 server:
-  port: 0
+  port: 8081
 
 spring:
   application:
     name: gateway
+  cloud:
+    gateway:
+      routes:
+        - id: analysis
+          uri: lb://analysis
+          predicates:
+            - Path=/analysis/**
+        - id: study
+          uri: lb://study
+          predicates:
+            - Path=/study/**
+
 
 eureka:
   client:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://admin:admin@localhost:8761/eureka/
+      defaultZone: http://localhost:8761/eureka/
   instance:
     hostname: localhost
+    non-secure-port: ${server.port}
+    prefer-ip-address: true
+
+
+

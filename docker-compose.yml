@@ -4,7 +4,6 @@ services:
   mysql:
     image: mysql:5.7
     platform: linux/amd64
-    container_name: mysql-db
     restart: on-failure
     environment:
       MYSQL_ROOT_PASSWORD: "admin"
@@ -14,7 +13,6 @@ services:
       - study-planning-network
 
   discovery-server:
-    container_name: discovery-server
     build:
       context: ./discovery-server/
       dockerfile: Dockerfile
@@ -27,7 +25,6 @@ services:
       - study-planning-network
 
   gateway:
-    container_name: gateway
     build:
       context: ./gateway/
       dockerfile: Dockerfile
@@ -40,7 +37,6 @@ services:
       - study-planning-network
 
   config-server:
-    container_name: config-server
     build:
       context: ./config-server/
       dockerfile: Dockerfile

@@ -30,7 +30,7 @@ services:
       dockerfile: Dockerfile
     restart: on-failure
     ports:
-      - 80:8081
+      - 8081:8081
     depends_on:
       - mysql
     networks:

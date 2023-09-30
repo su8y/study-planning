@@ -10,7 +10,7 @@ node{
 	   sh 'pwd'
 	   sh 'cd /var/jenkins_home/workspace/studyplanning-app/discovery-server'
 	   sh 'pwd'
-	   //sh 'docker build -t discovery-server .'
+	   sh 'docker build -t discovery-server .'
 	}
 	stage('Tag'){
 	}

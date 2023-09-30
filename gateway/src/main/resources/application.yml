@@ -17,3 +17,7 @@ spring:
           uri: lb://study
           predicates:
             - Path=/study/**
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/

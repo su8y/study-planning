@@ -39,5 +39,16 @@ services:
     networks:
       - study-planning-network
 
+  config-server:
+    container_name: config-server
+    build:
+      context: ./config-server/
+      dockerfile: Dockerfile
+    restart: on-failure
+    ports:
+      - 8888:8888
+    networks:
+      - study-planning-network
+
 networks:
   study-planning-network:

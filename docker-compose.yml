@@ -28,6 +28,8 @@ services:
     build:
       context: ./gateway/
       dockerfile: Dockerfile
+    environment:
+      DISCOVERY_SERVER_URL: "http://discovery-server:8761/eureka"
     restart: on-failure
     ports:
       - 8081:8081

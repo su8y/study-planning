@@ -16,8 +16,7 @@ node{
 	}
 	stage('Deploy'){
 	    try {
-            sh 'docker stop study/discovery-server'
-            sh 'docker rm study/discovery-server'
+            sh 'docker-compose down'
 	    } catch(e) {
 	        echo "No Starting App"
 	    }

@@ -20,6 +20,6 @@ node{
 	    } catch(e) {
 	        echo "No Starting App"
 	    }
-	    sh 'docker-compose -d up'
+	    sh 'docker-compose up -d'
 	}
 }

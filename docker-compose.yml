@@ -3,6 +3,7 @@ version: '3'
 services:
   mysql:
     image: mysql:5.7
+    platform: linux/amd64
     container_name: mysql-db
     restart: on-failure
     environment:
@@ -16,7 +17,7 @@ services:
     container_name: discovery-server
     build:
       context: ./discovery-server/
-      dockerfile: DockerFile
+      dockerfile: Dockerfile
     restart: on-failure
     ports:
       - 8761:8761
@@ -26,13 +27,13 @@ services:
       - study-planning-network
 
   gateway:
-    container_name: discovery-server
+    container_name: gateway
     build:
       context: ./gateway/
-      dockerfile: DockerFile
+      dockerfile: Dockerfile
     restart: on-failure
     ports:
-      - 8080:8080
+      - 80:8080
     depends_on:
       - mysql
     networks:

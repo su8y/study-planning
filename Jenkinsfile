@@ -7,15 +7,20 @@ node{
 	stage('Unit Test'){
 	}
 	stage('Build'){
-	   sh 'pwd'
-	   sh 'cd /var/jenkins_home/workspace/studyplanning-app/discovery-server'
-	   sh 'pwd'
-	   sh 'docker build -t discovery-server .'
+	   sh './docker_build_all.sh'
+	   sh 'docker-compose build'
 	}
 	stage('Tag'){
 	}
 	stage('Push'){
 	}
 	stage('Deploy'){
+	    try {
+            sh 'docker stop study/discovery-server'
+            sh 'docker rm study/discovery-server'
+	    } catch(e) {
+	        echo "No Starting App"
+	    }
+	    sh 'docker-compose up'
 	}
 }

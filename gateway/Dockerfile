@@ -1,5 +1,8 @@
 FROM openjdk:17-oracle
-CMD ["./gradlew", "clean", "bootJar","--no-daemon"]
+
+VOLUME /tmp
 ARG JAR_FILE_PATH=build/libs/*.jar
 COPY ${JAR_FILE_PATH} gateway.jar
+EXPOSE 8080
+
 ENTRYPOINT ["java", "-jar", "gateway.jar"]
